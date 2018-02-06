@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import axios from 'axios'     
+
 import Model01 from './components/Model01.vue'
 import Model02 from './components/Model02.vue'
 import Model03 from './components/Model03.vue'
+let dataJson = require('dataJson')
 
-Vue.use(axios);
+console.log(dataJson);
 
 export default {
 
@@ -33,25 +33,12 @@ export default {
   data () {
     return {
       nowNumber: 0,
-      dataJson:[],
+      dataJson,
       nextButtondisabled: false,
       nextButtonText: '請選擇答案',
       allAnswer: [],
     }
   },  
-  beforeCreate: function () {
-    var self = this;
-    console.log('1233');
-    axios.get('https://next.json-generator.com/api/json/get/V1UICPGIN')
-      .then(function (response) {
-        self.dataJson = response.data;
-        console.log(self.dataJson);
-        console.log(self.dataJson[0].bgstyle);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  },
   methods: {
       nextQusetion() {
           if (this.dataJson[this.nowNumber].modelOption.answer.length != 0) {
