@@ -4,6 +4,7 @@ var webpack = require('webpack')
 module.exports = {
   entry: './src/main.js',
   output: {
+    libraryTarget: 'umd',
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: 'build.js'
@@ -52,6 +53,9 @@ module.exports = {
   },
   performance: {
     hints: false
+  },
+  externals: {
+    dataJson:'dataJson'
   },
   devtool: '#eval-source-map'
 }
