@@ -20,8 +20,6 @@ import Model02 from './components/Model02.vue'
 import Model03 from './components/Model03.vue'
 let dataJson = require('dataJson')
 
-console.log(dataJson);
-
 export default {
 
   name: 'app',
