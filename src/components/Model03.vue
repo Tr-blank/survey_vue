@@ -52,3 +52,51 @@ export default {
   }
 }
 </script>
+<style>
+ .model-3 .inputRange {
+                width: 100%;
+                height: 31px;
+                cursor: pointer;
+                border-radius: 5px;
+                border: 5px solid #fff;
+                -webkit-appearance: none;
+                outline: none;
+            }
+
+            .model-3 .rangePic {
+                overflow: hidden;
+                text-align: center;
+                -webkit-transition: width 0.5s ease;
+                -moz-transition: width 0.5s ease;
+                -o-transition: width 0.5s ease;
+                transition: width 0.5s ease;
+                display: flex;
+                justify-content: center;
+                align-items: center
+            }
+
+            .model-3 .col-50 {
+                width: 50%;
+            }
+
+            .model-3 .col-25 {
+                width: 25%;
+            }
+
+            .model-3 .col-0 {
+                width: 0%;
+            }
+
+            .model-3 .range-title,
+            .model-3 .range-pic {
+                display: flex;
+                margin: 10px 0;
+                padding: 0;
+                list-style-type: none;
+                justify-content: space-between;
+            }
+
+            .model-3 .range-pic {
+                min-height: 310px;
+            }
+</style>

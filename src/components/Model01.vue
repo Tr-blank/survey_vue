@@ -71,30 +71,133 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    .model-1 {
+        display: flex;
+        justify-content: center;
+    }
 
-h1, h2 {
-  font-weight: normal;
-}
+    .model-1 .col-2 .option {
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+    .model-1 .col-4 .pic {
+        max-width: 40px;
+        display: block;
+        margin: 20px auto 0 auto;
+    }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+    .model-1 .control {
+        display: none;
+    }
 
-a {
-  color: #42b983;
-}
+    .flipCard .option {
+        font-size: 16px;
+        border-radius: 10px;
+        position: relative;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .flipCard .bgheight {
+        padding: 40% 0;
+    }
+
+    .flipCard .front,
+    .flipCard .back {
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        -webkit-transition: transform 0.5s ease;
+        -moz-transition: transform 0.5s ease;
+        -o-transition: transform 0.5s ease;
+        transition: transform 0.5s ease;
+    }
+
+    .flipCard .front {
+        z-index: 2;
+        -webkit-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+
+    .flipCard .back {
+        z-index: 1;
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .flipCard .control:checked~.front {
+        transform: rotateY(180deg);
+    }
+
+    .flipCard .control:checked~.back {
+        transform: rotateY(0deg);
+    }
+
+    .flipCard .pic-title {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+        padding: 10px;
+    }
+
+    .oneline {
+        position: relative;
+        width: 100%;
+    }
+
+    .oneline .option {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border: 1px solid #f5f5f5;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        cursor: pointer;
+    }
+    .barChart {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    .barChart .bgheight {
+        height: 140px;
+    }
+
+    .barChart .back {
+        overflow: hidden;
+        height: 0;
+        bottom: -10%;
+        -webkit-transition: height 0.5s ease;
+        -moz-transition: height 0.5s ease;
+        -o-transition: height 0.5s ease;
+        transition: height 0.5s ease;
+    }
+
+    .barChart .barTitle {
+        padding: 10px;
+        display: block;
+    }
+
+    .barChart .control:checked~.back {
+        height: 120%;
+    }
 </style>

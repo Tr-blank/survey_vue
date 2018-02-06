@@ -372,30 +372,60 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+            * {
+                box-sizing: border-box;
+            }
 
-h1, h2 {
-  font-weight: normal;
-}
+            body {
+                font-family: "微軟正黑體", HelveticaNeue-Light, Arial, Helvetica, sans-serif;
+                margin: 0;
+                padding: 0 10px;
+                height: 100vh;
+                color: #333;
+            }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+            .hide {
+                display: none;
+            }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+            img {
+                max-width: 100%;
+            }
 
-a {
-  color: #42b983;
-}
+            .survey {
+                max-width: 800px;
+                margin: 10px auto;
+                border: 1px solid #ccc;
+                padding: 20px 5%;
+                min-height: 500px;
+            }
+
+            .qusetion-title {
+                font-size: 28px;
+                line-height: 1.2em;
+                margin-bottom: 5px;
+            }
+
+            .qusetion-word {
+                font-size: 22px;
+                line-height: 1.2em;
+                margin-bottom: 40px;
+            }
+
+            .button-line {
+                text-align: right;
+            }
+
+            .col-2 {
+                position: relative;
+                width: 48%;
+                margin: 1%;
+                max-width: 200px;
+            }
+
+            .col-4 {
+                position: relative;
+                width: 23%;
+                margin: 1%;
+            }
 </style>
