@@ -3,9 +3,63 @@
   <head>
     <meta charset="utf-8">
     <title>survey_vue</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    
+      body {
+        font-family: "微軟正黑體", HelveticaNeue-Light, Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0 10px;
+        height: 100vh;
+        color: #333;
+      }
+    
+      .hide {
+        display: none;
+      }
+    
+      img {
+        max-width: 100%;
+      }
+      .text-center{
+        text-align: center;
+      }
+      .inner{
+        max-width:1024px;
+        margin: 0 auto;
+      }
+      .breadcrumb{
+        border-bottom: 1px solid #ddd;
+        display: inline-block;
+        display: box;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+      }
+      h1{
+        font-size: 18px;
+      }
+    </style>
+
   </head>
   <body>
-    <div id="app"></div>
+    <header class="text-center"><img src=""></header>
+    <div class="inner breadcrumb">
+      <a href="">回官網</a>
+      <span><a>p</a><a>g</a><a>f</a></span>
+    </div>
+    <main class="inner">
+      <h1>頭皮問題檢測</h1>
+      <div class="web-editor">網頁編輯器</div>
+      <div id="app"></div>
+    </main>
+    <footer class="text-center">COPYRIGHT © 2017 JuliArt. All Rights Reserved.</footer>
     <script src="/dist/dataJson.js"></script>
     <script src="/dist/build.js"></script>
   </body>

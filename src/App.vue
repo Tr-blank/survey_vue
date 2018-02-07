@@ -21,7 +21,6 @@ import Model03 from './components/Model03.vue'
 let dataJson = require('dataJson')
 
 export default {
-
   name: 'app',
   components:{
     Model01,
@@ -61,60 +60,41 @@ export default {
 </script>
 
 <style>
-            * {
-                box-sizing: border-box;
-            }
 
-            body {
-                font-family: "微軟正黑體", HelveticaNeue-Light, Arial, Helvetica, sans-serif;
-                margin: 0;
-                padding: 0 10px;
-                height: 100vh;
-                color: #333;
-            }
+.survey {
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    padding: 20px 5%;
+    min-height: 500px;
+}
 
-            .hide {
-                display: none;
-            }
+.qusetion-title {
+    font-size: 28px;
+    line-height: 1.2em;
+    margin-bottom: 5px;
+}
 
-            img {
-                max-width: 100%;
-            }
+.qusetion-word {
+    font-size: 22px;
+    line-height: 1.2em;
+    margin-bottom: 40px;
+}
 
-            .survey {
-                max-width: 800px;
-                margin: 10px auto;
-                border: 1px solid #ccc;
-                padding: 20px 5%;
-                min-height: 500px;
-            }
+.button-line {
+    text-align: right;
+}
+   
+      .col-2 {
+        position: relative;
+        width: 48%;
+        margin: 1%;
+        max-width: 200px;
+      }
+    
+      .col-4 {
+        position: relative;
+        width: 23%;
+        margin: 1%;
+      }
 
-            .qusetion-title {
-                font-size: 28px;
-                line-height: 1.2em;
-                margin-bottom: 5px;
-            }
-
-            .qusetion-word {
-                font-size: 22px;
-                line-height: 1.2em;
-                margin-bottom: 40px;
-            }
-
-            .button-line {
-                text-align: right;
-            }
-
-            .col-2 {
-                position: relative;
-                width: 48%;
-                margin: 1%;
-                max-width: 200px;
-            }
-
-            .col-4 {
-                position: relative;
-                width: 23%;
-                margin: 1%;
-            }
 </style>
