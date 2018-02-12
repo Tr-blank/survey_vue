@@ -84,13 +84,20 @@ export default {
 </script>
 
 <style>
-
+#app{
+    position: relative; 
+    padding: 40% 0;
+}
 .survey {
     margin: 20px 0;
     border: 1px solid #ccc;
     padding: 60px 8%;
     min-height: 500px;
-    position: relative;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
 }
 
 .qusetion-title {
