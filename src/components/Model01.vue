@@ -2,7 +2,7 @@
     <div :class="modelOneLine" :style="flexWrap">
       <div :class="optionClass" v-for="option in data.options">
         <input class="control" :value="option.value" 
-            :id="option.optionId" type="checkbox" :name="option.name" 
+            :id="option.optionId" type="checkbox" name="qusetion" 
             v-model="data.answer" @click="optionClick">
         <div class="bgheight"></div>
         <label class="option front" :for="option.optionId" 

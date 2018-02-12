@@ -5,11 +5,23 @@
         <div class="qusetion-word" :style="dataJson[nowNumber].wordColor">{{dataJson[nowNumber].question}}</div> 
         <component :is="dataJson[nowNumber].model" :data="dataJson[nowNumber].modelOption" />
         <p class="button-line">
-          <button @click="nextQusetion">{{showButtonText}}</button>
+            <span v-if="!dataJson[nowNumber].necessary">
+                <input type="checkbox" id="necessary">
+                <label for="necessary">跳過 </label>
+            </span>
+            <button v-if="nowNumber>0" @click="nowNumber=nowNumber-1">上一頁</button>
+            <button @click="nextQusetion">{{showButtonText}}</button>
         </p>
+        <div class="progress" :style="{'background-color':dataJson[nowNumber].barBgColor,}">
+            <div class="progress-bar" 
+                :style="{
+                    'width':barWidth+'%',
+                    'background-color':dataJson[nowNumber].barColor
+                }">
+            </div>
+            <span class="progress-word" :style="{'color':dataJson[nowNumber].barWordColor,}">已答必填題數：{{answered}}/{{dataJson[nowNumber].totalAnswer}}</span>
+        </div>
       </div>
-      <pre>allAnswer:{{allAnswer}}</pre>
-      <pre class="hide">{{dataJson}}</pre>
     </div>
 </template>
 
@@ -34,6 +46,8 @@ export default {
       nextButtondisabled: false,
       nextButtonText: '請選擇答案',
       allAnswer: [],
+      answered:0,
+      barWidth:0,
     }
   },  
   methods: {
@@ -44,7 +58,10 @@ export default {
                   question: this.dataJson[this.nowNumber].question,
                   answer: this.dataJson[this.nowNumber].modelOption.answer
               };
+              console.log(this.dataJson[this.nowNumber].modelOption);
               this.allAnswer.push(nowAnswer);
+              this.answered++;
+              this.barWidth=this.answered/this.dataJson[this.nowNumber].totalAnswer*100; 
               this.nowNumber = this.dataJson[this.nowNumber].nextNumber;
           }
       },
@@ -54,7 +71,7 @@ export default {
           return this.dataJson[this.nowNumber].modelOption.answer.length != 0
               ? this.nextButtonText = '下一題'
               : this.nextButtonText = '請選擇答案';
-      }
+      },
   }
 }
 </script>
@@ -64,8 +81,9 @@ export default {
 .survey {
     margin: 20px 0;
     border: 1px solid #ccc;
-    padding: 20px 5%;
+    padding: 60px 8%;
     min-height: 500px;
+    position: relative;
 }
 
 .qusetion-title {
@@ -83,18 +101,41 @@ export default {
 .button-line {
     text-align: right;
 }
-   
-      .col-2 {
-        position: relative;
-        width: 48%;
-        margin: 1%;
-        max-width: 200px;
-      }
-    
-      .col-4 {
-        position: relative;
-        width: 23%;
-        margin: 1%;
-      }
+ 
+.col-2 {
+    position: relative;
+    width: 48%;
+    margin: 1%;
+    max-width: 200px;
+}
+.col-4 {
+    position: relative;
+    width: 23%;
+    margin: 1%;
+}
+.progress{
+    height: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 20px;
+    left: 3%;
+    width: 94%;
+    text-align: center;
+    font-size: 14px;
+}
+.progress-bar{
+    height: 20px;
+    background-color: #5aa051;
+    width: 0%;
+}
+.progress-word{
+    position: absolute;
+    top: 0;
+    left:0;
+    width:100%;
+    z-index: 10;
+}
 
 </style>
