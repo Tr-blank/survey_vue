@@ -179,13 +179,13 @@ export default {
     }
 
     .barChart .bgheight {
-        height: 140px;
+        padding:100% 0;
     }
 
     .barChart .back {
         overflow: hidden;
         height: 0;
-        bottom: -10%;
+        bottom: -5%;
         -webkit-transition: height 0.5s ease;
         -moz-transition: height 0.5s ease;
         -o-transition: height 0.5s ease;
@@ -198,6 +198,6 @@ export default {
     }
 
     .barChart .control:checked~.back {
-        height: 120%;
+        height: 110%;
     }
 </style>
