@@ -6,7 +6,9 @@
         <component :is="dataJson[nowNumber].model" :data="dataJson[nowNumber].modelOption" />
         <p class="button-line">
             <span v-if="!dataJson[nowNumber].necessary">
-                <input type="checkbox" id="necessary">
+                <input type="checkbox" id="necessary" value="pass" 
+                    v-model="dataJson[nowNumber].modelOption.answer" 
+                    @click="necessaryClick">
                 <label for="necessary">跳過 </label>
             </span>
             <button v-if="nowNumber>0" @click="nowNumber=nowNumber-1">上一頁</button>
@@ -51,20 +53,25 @@ export default {
     }
   },  
   methods: {
-      nextQusetion() {
-          if (this.dataJson[this.nowNumber].modelOption.answer.length != 0) {
-              let nowAnswer = {
-                  number: this.dataJson[this.nowNumber].number,
-                  question: this.dataJson[this.nowNumber].question,
-                  answer: this.dataJson[this.nowNumber].modelOption.answer
-              };
-              console.log(this.dataJson[this.nowNumber].modelOption);
-              this.allAnswer.push(nowAnswer);
-              this.answered++;
-              this.barWidth=this.answered/this.dataJson[this.nowNumber].totalAnswer*100; 
-              this.nowNumber = this.dataJson[this.nowNumber].nextNumber;
-          }
-      },
+    necessaryClick(e){
+        if (e.checked){
+            this.dataJson[this.nowNumber].modelOption.answer = ['pass'];
+        }
+    },
+    nextQusetion() {
+        if (this.dataJson[this.nowNumber].modelOption.answer.length != 0) {
+            let nowAnswer = {
+                number: this.dataJson[this.nowNumber].number,
+                question: this.dataJson[this.nowNumber].question,
+                answer: this.dataJson[this.nowNumber].modelOption.answer
+            };
+            this.allAnswer.push(nowAnswer);
+            (this.dataJson[this.nowNumber].necessary)?this.answered++:this.answered;
+            this.barWidth=this.answered/this.dataJson[this.nowNumber].totalAnswer*100; 
+            this.nowNumber = this.dataJson[this.nowNumber].nextNumber;
+            console.log(this.allAnswer);
+        }
+    },
   },
   computed: {
       showButtonText() {
