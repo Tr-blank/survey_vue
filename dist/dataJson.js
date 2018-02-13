@@ -4,7 +4,6 @@ var dataJson = [
     title: 'Welcome to Clinique',//問題大標
     question: 'How can we help you today?',//問題小標
     model: 'model01',//使用模板編號，必填，model01、model02、model03
-    necessary:true,//是否必填
     nextNumber: 1,//下個問題標號
     answered:false,//是否回答，預設都是false，過程計算用不須變動
     totalAnswer: 5,//總共必填題數，如是依回答答案決定題目順序的題型，必填總題數會比necessary:true的題目數量來的少
@@ -20,6 +19,7 @@ var dataJson = [
     modelOption: {//此問題的答案選項共通設定
       multiLine: 'flex-wrap:wrap;', //多行顯示要填入flex-wrap:wrap;
       oneLine: true,//是不是只有一行顯示
+      necessary: true,//是否必填
       bigPic: false, //如果是大圖模式就填true
       maxChoose: 1,//多選最大可選數量
       answer: [],//暫存此答案的參數，不須變動
@@ -56,7 +56,6 @@ var dataJson = [
     title: 'What brings you to Clinique today?',
     question: 'Tap to select up to 2 skin concerns.',
     model: 'model01',
-    necessary: true,
     nextNumber: 2,
     answered: false,
     totalAnswer: 5,//總共必填題數
@@ -72,6 +71,7 @@ var dataJson = [
     modelOption: {
       multiLine: 'flex-wrap:wrap;', //多行顯示要填入flex-wrap:wrap;
       oneLine: false,
+      necessary: true,
       bigPic: false, 
       maxChoose: 2,
       answer: [],
@@ -179,7 +179,6 @@ var dataJson = [
     question: '',
     answer: '',
     model: 'model01',
-    necessary: false,
     nextNumber: 3,
     answered: false,
     totalAnswer: 5,
@@ -195,6 +194,7 @@ var dataJson = [
     modelOption: {
       multiLine: '',
       oneLine: true,
+      necessary: false,
       bigPic: false, 
       maxChoose: 1,
       answer: [],
@@ -252,7 +252,6 @@ var dataJson = [
     title: 'How many hours do you sleep on average?',
     question: "We ask because poor sleep can affect skin's well - being.",
     model: 'model02',
-    necessary: true,
     nextNumber: 4,
     answered: false,
     totalAnswer: 5,
@@ -266,6 +265,7 @@ var dataJson = [
     barColor:'#5aa051',
     barWordColor:'#FFC107',
     modelOption: {
+      necessary: false,
       answer: []
     }
   },
@@ -274,7 +274,6 @@ var dataJson = [
     title: 'What kind of sun exposure do you get on an average day?',
     question: '',
     model: 'model01',
-    necessary: true,
     nextNumber: 5,
     answered: false,
     totalAnswer: 5,
@@ -290,6 +289,7 @@ var dataJson = [
     modelOption: {
       multiLine: '',
       oneLine: true,
+      necessary: false,
       bigPic: true, 
       maxChoose: 1,
       answer: [],
@@ -326,7 +326,6 @@ var dataJson = [
     title: 'Which skin tone is closest to yours?',
     question: '',
     model: 'model03',
-    necessary: true,
     nextNumber: 0,
     answered: false,
     totalAnswer: 5,
@@ -341,6 +340,7 @@ var dataJson = [
     barWordColor:'#FFC107',
     modelOption: {
       answer: [],
+      necessary: false,
       rangeBgColorLeft: '#865649',//拉條漸層底色左邊色碼
       rangeBgColorRight: '#f4e2d3',//拉條漸層底色右邊色碼
       options: [

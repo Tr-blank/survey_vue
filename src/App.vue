@@ -4,16 +4,8 @@
         <div class="qusetion-title">{{dataJson[nowNumber].title}}</div>
         <div class="qusetion-word" :style="dataJson[nowNumber].wordColor">{{dataJson[nowNumber].question}}</div> 
         <component :is="dataJson[nowNumber].model" :data="dataJson[nowNumber].modelOption" />
-        <p class="button-line">
-            <span v-if="!dataJson[nowNumber].necessary">
-                <input type="checkbox" id="necessary" value="pass" 
-                    v-model="dataJson[nowNumber].modelOption.answer" 
-                    @click="necessaryClick">
-                <label for="necessary">跳過 </label>
-            </span>
-            <button v-if="nowNumber>0" @click="nowNumber=nowNumber-1">上一頁</button>
-            <button @click="nextQusetion">{{showButtonText}}</button>
-        </p>
+        <span class="button-left" v-if="nowNumber>0" @click="nowNumber=nowNumber-1"><</span>
+        <span class="button-right" v-if="dataJson[nowNumber].modelOption.answer.length != 0" @click="nextQusetion">></span>
         <div class="progress" :style="{'background-color':dataJson[nowNumber].barBgColor,}">
             <div class="progress-bar" 
                 :style="{
@@ -33,7 +25,12 @@ import Model01 from './components/Model01.vue'
 import Model02 from './components/Model02.vue'
 import Model03 from './components/Model03.vue'
 let dataJson = require('dataJson')
-
+Array.prototype.remove = function(val) {
+    let index = this.indexOf(val);
+    if (index > -1) {
+        this.splice(index, 1);
+    }
+};
 export default {
   name: 'app',
   components:{
@@ -50,24 +47,29 @@ export default {
       allAnswer: [],
       answered:0,
       barWidth:0,
+      checkedState:true,
     }
   },  
   methods: {
-    necessaryClick(e){
-        if (e.checked){
-            this.dataJson[this.nowNumber].modelOption.answer = ['pass'];
-        }
-    },
     nextQusetion() {
         if (this.dataJson[this.nowNumber].modelOption.answer.length != 0) {
-            let nowAnswer = {
-                number: this.dataJson[this.nowNumber].number,
-                question: this.dataJson[this.nowNumber].question,
-                answer: this.dataJson[this.nowNumber].modelOption.answer
-            };
-            this.allAnswer.push(nowAnswer);
+            if(!this.dataJson[this.nowNumber].answered){
+                let nowAnswer = {
+                    number: this.dataJson[this.nowNumber].number,
+                    question: this.dataJson[this.nowNumber].question,
+                    answer: this.dataJson[this.nowNumber].modelOption.answer
+                };
+                this.allAnswer.push(nowAnswer);
+                this.dataJson[this.nowNumber].answered=true;
+            }else{
+                for( let dd in this.allAnswer){
+                    if(this.allAnswer[dd].number == this.dataJson[this.nowNumber].number){
+                        this.allAnswer[dd].answer = this.dataJson[this.nowNumber].modelOption.answer;
+                    }
+                }
+            }
             (this.dataJson[this.nowNumber].necessary)?this.answered++:this.answered;
-            this.barWidth=this.answered/this.dataJson[this.nowNumber].totalAnswer*100; 
+            this.barWidth=this.answered/this.dataJson[this.nowNumber].totalAnswer*100;
             this.nowNumber = this.dataJson[this.nowNumber].nextNumber;
             console.log(this.allAnswer);
         }
@@ -87,9 +89,9 @@ export default {
 #app{
     position: relative; 
     padding: 40% 0;
+    margin: 20px 0; 
 }
 .survey {
-    margin: 20px 0;
     border: 1px solid #ccc;
     padding: 60px 8%;
     min-height: 500px;
@@ -151,5 +153,26 @@ export default {
     width:100%;
     z-index: 10;
 }
-
+.button-left{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+}
+.button-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+}
 </style>

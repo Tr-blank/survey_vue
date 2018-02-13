@@ -1,21 +1,29 @@
 <template>
-    <div :class="modelOneLine" :style="flexWrap">
-      <div :class="optionClass" v-for="option in data.options">
-        <input class="control" :value="option.value" 
-            :id="option.optionId" type="checkbox" name="qusetion" 
-            v-model="data.answer" @click="optionClick">
-        <div class="bgheight"></div>
-        <label class="option front" :for="option.optionId" 
-            :style="data.optionsFroundcolor">
-          <span :class="optionPic" ><img :src="option.imgFrontSrc"></span>
-          <span :class="optionWord">{{option.title}}</span>
-        </label>
-        <label class="option back" :for="option.optionId" 
-            :style="data.optionsBackcolor">
-          <span :class="optionPic" ><img :src="option.imgBackSrc"></span>
-          <span :class="optionWord">{{option.title}}</span>
-        </label>
-      </div>
+    <div>
+        <div :class="modelOneLine" :style="flexWrap">
+            <div :class="optionClass" v-for="option in data.options">
+                <input class="control" :value="option.value" 
+                    :id="option.optionId" type="checkbox" name="qusetion" 
+                    v-model="data.answer" @click="optionClick">
+                <div class="bgheight"></div>
+                <label class="option front" :for="option.optionId" 
+                    :style="data.optionsFroundcolor">
+                <span :class="optionPic" ><img :src="option.imgFrontSrc"></span>
+                <span :class="optionWord">{{option.title}}</span>
+                </label>
+                <label class="option back" :for="option.optionId" 
+                    :style="data.optionsBackcolor">
+                <span :class="optionPic" ><img :src="option.imgBackSrc"></span>
+                <span :class="optionWord">{{option.title}}</span>
+                </label>
+            </div>
+        </div>
+        <p class="button-line" v-if="!data.necessary">
+            <input type="checkbox" id="necessary" value="pass"
+                :checked="necessaryChecked"
+                @change="necessaryClick" >
+            <label for="necessary">跳過 </label>
+        </p>
     </div>
 </template>
 
@@ -23,14 +31,37 @@
 export default {
   name: 'model01',
   props: ['data'],
+  data() {
+      return {
+        checkedState:true,
+      }
+  },
   methods: {
-      optionClick(event) {
-          if (this.data.answer.length >= this.data.maxChoose) {
-              this.data.answer.splice(0, 1);
-          }
-      },
+    necessaryClick(){
+        if (this.checkedState){
+            this.data.answer = [];
+            this.data.answer.push('pass');
+            this.checkedState = false;
+        }else{
+            this.data.answer.remove('pass');
+            this.checkedState = true;
+        }
+    },
+    optionClick(event) {
+
+        if (this.data.answer.length >= this.data.maxChoose) {
+            this.data.answer.splice(0, 1);
+        }
+        if (!this.checkedState){
+            this.data.answer.remove('pass');
+            this.checkedState = true;
+        }
+    },
   },
   computed: {
+      necessaryChecked(){
+          return !this.checkedState?'checked':'';
+      },
       optionPic() {
           return this.data.bigPic ? "bigPic" : "pic";
       },
