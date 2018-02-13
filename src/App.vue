@@ -68,7 +68,7 @@ export default {
                     }
                 }
             }
-            (this.dataJson[this.nowNumber].necessary)?this.answered++:this.answered;
+            this.dataJson[this.nowNumber].modelOption.necessary?this.answered++:this.answered;
             this.barWidth=this.answered/this.dataJson[this.nowNumber].totalAnswer*100;
             this.nowNumber = this.dataJson[this.nowNumber].nextNumber;
             console.log(this.allAnswer);

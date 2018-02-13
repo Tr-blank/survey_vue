@@ -23,6 +23,12 @@
           {{option.title}}
       </li>
     </ul>
+    <p class="button-line" v-if="!data.necessary">
+        <input type="checkbox" id="necessary" value="pass"
+            :checked="necessaryChecked"
+            @change="necessaryClick" >
+        <label for="necessary">跳過 </label>
+    </p>
   </div>
 </template>
 
@@ -37,7 +43,8 @@ export default {
               background: `linear-gradient(to right,
                 ${this.data.rangeBgColorLeft},
                 ${this.data.rangeBgColorRight})`
-          }
+          },
+          checkedState:true,
       }
   }, methods: {
       nowAnswer() {
@@ -45,10 +52,20 @@ export default {
       }
   },
   computed: {
-      imgClass() {
-          return "col-50"
+    necessaryClick(){
+        if (this.checkedState){
+            this.data.answer = [];
+            this.data.answer.push('pass');
+            this.checkedState = false;
+        }else{
+            this.data.answer.remove('pass');
+            this.checkedState = true;
+        }
+    },
+    imgClass() {
+        return "col-50"
 
-      }
+    }
   }
 }
 </script>

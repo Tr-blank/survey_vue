@@ -265,7 +265,10 @@ var dataJson = [
     barColor:'#5aa051',
     barWordColor:'#FFC107',
     modelOption: {
-      necessary: false,
+      necessary: true,
+      bgstyle: {
+        'background-color': '#f6f6f6'
+      },
       answer: []
     }
   },
@@ -289,7 +292,7 @@ var dataJson = [
     modelOption: {
       multiLine: '',
       oneLine: true,
-      necessary: false,
+      necessary: true,
       bigPic: true, 
       maxChoose: 1,
       answer: [],
@@ -340,7 +343,7 @@ var dataJson = [
     barWordColor:'#FFC107',
     modelOption: {
       answer: [],
-      necessary: false,
+      necessary: true,
       rangeBgColorLeft: '#865649',//拉條漸層底色左邊色碼
       rangeBgColorRight: '#f4e2d3',//拉條漸層底色右邊色碼
       options: [
