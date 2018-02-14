@@ -8,9 +8,12 @@
         <div class="circle-wrapper">
           <div class="circle-process">
             <div class="circle-bottom"></div>
-            <div class="rightcircle" :style="rightCircleRotate"></div>
-            <div class="leftcircle" :style="leftCircleRotate"></div>
-            <div :class="circleTop"></div>
+            <div class="right-wrapper">
+                <div class="rightcircle" :style="rightCircleRotate"></div>
+            </div>
+            <div class="left-wrapper">
+                <div class="leftcircle" :style="leftCircleRotate"></div>
+            </div>
             <div class="word" :style="data.bgstyle">
               <input class="circle-text" type="number" v-model="data.answer" 
               min="0" max="12">
@@ -34,7 +37,6 @@ export default {
   props: ['data'],
   data() {
       return {
-          circleTop: 'circle-top-left',
           checkedState:true,
       }
   },
@@ -71,16 +73,12 @@ export default {
       leftCircleRotate() {
           let rotate = parseInt(this.data.answer, 10) * 30;
           if (this.data.answer < 6) {
-              this.circleTop = 'circle-top-left';
               return {
-                  "transform": `rotate(-135deg)`,
-                  "display": "none"
+                  "transform": `rotate(225deg)`,
               }
           }else {
-              this.circleTop = 'circle-top-right';
               return {
                   "transform": `rotate(${rotate + 45}deg)`,
-                  "display": "block"
               }
           }
       },
@@ -189,17 +187,23 @@ export default {
     border: 3px solid #fff;
     z-index: 10;
 }
-
+.model-2 .right-wrapper{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
 .model-2 .rightcircle {
     border: 20px solid transparent;
     border-radius: 50%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
+    top: 0;
+    right: 100%;
+    width: 200%;
     height: 100%;
-    margin-top: -50%;
-    margin-left: -50%;
+    margin-right: -100%;
     border-bottom: 30px solid #fff;
     border-left: 30px solid #fff;
     border-right: 30px solid transparent;
@@ -211,22 +215,28 @@ export default {
     transition: transform 0.5s ease;
     z-index: 20;
 }
-
+.model-2 .left-wrapper{
+    position: absolute;
+    top: 0;
+    left: 1px;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
 .model-2 .leftcircle {
     border: 20px solid transparent;
     border-radius: 50%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
+    top: 0;
+    left: 100%;
+    width: 200%;
     height: 100%;
-    margin-top: -50%;
-    margin-left: -50%;
-    border-top: 20px solid #fff;
-    border-right: 20px solid #fff;
+    margin-left: -100%;
+    border-top: 30px solid #fff;
+    border-right: 30px solid #fff;
     border-left: 30px solid transparent;
     border-bottom: 30px solid transparent;
-    transform: rotate(-135deg);
+    transform: rotate(225deg);
     -webkit-transition: transform 0.5s ease;
     -moz-transition: transform 0.5s ease;
     -o-transition: transform 0.5s ease;

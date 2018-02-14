@@ -88,7 +88,7 @@ export default {
 <style>
 #app{
     position: relative; 
-    padding: 40% 0;
+    padding: 45% 0;
     margin: 20px 0; 
 }
 .survey {
